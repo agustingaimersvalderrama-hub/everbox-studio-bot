@@ -375,6 +375,51 @@ async def cerrarticket(ctx):
     )
 
     await ctx.send(embed=embed)
+@bot.command(name="ticketactivo")
+@commands.has_permissions(manage_channels=True)
+async def ticketactivo(ctx, usuario: discord.Member):
+
+    try:
+        # Cambiar nombre del canal
+        await ctx.channel.edit(
+            name=f"ticket-{usuario.name.lower()}"
+        )
+
+        embed = discord.Embed(
+            title="🎫 | Ticket Tomado",
+            description=(
+                f"Hola {usuario.mention}, un miembro del equipo administrativo "
+                f"ha tomado tu ticket.\n\n"
+                "Por favor, ten paciencia mientras revisamos tu caso.\n\n"
+                "Tu solicitud está siendo atendida por el equipo administrativo "
+                "de Everbox Studio.\n\n"
+                "Agradecemos tu paciencia y comprensión."
+            ),
+            color=discord.Color.green()
+        )
+
+        embed.add_field(
+            name="👨‍💼 Staff Asignado",
+            value=ctx.author.mention,
+            inline=False
+        )
+
+        embed.set_footer(
+            text="Everbox Studio © Todos los derechos reservados"
+        )
+
+        await ctx.send(
+            content=usuario.mention,
+            embed=embed
+        )
+
+    except Exception as e:
+        await ctx.send(
+            f"❌ Ocurrió un error: {e}"
+        )
+
+
+
 
     await asyncio.sleep(10)
 
