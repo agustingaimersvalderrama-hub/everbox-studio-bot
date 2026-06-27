@@ -420,7 +420,58 @@ async def ticketactivo(ctx, usuario: discord.Member):
             f"❌ Ocurrió un error: {e}"
         )
 
+from discord.ui import View, Button
 
+@bot.tree.command(
+    name="postulaciones",
+    description="Muestra las postulaciones al staff"
+)
+async def postulaciones(interaction: discord.Interaction):
+
+    embed = discord.Embed(
+        title="📋 | Postulaciones al Staff",
+        description=(
+            "Nos complace anunciar que las postulaciones para formar parte del equipo administrativo de Everbox Studio se encuentran oficialmente abiertas.\n\n"
+
+            "Buscamos personas responsables, comprometidas y con ganas de contribuir al crecimiento de nuestra comunidad.\n\n"
+
+            "**Requisitos:**\n"
+            "• Buena ortografía y redacción.\n"
+            "• Contar con madurez y responsabilidad.\n"
+            "• Tener disponibilidad para atender tickets y usuarios.\n"
+            "• Conocer las normativas del servidor.\n"
+            "• Mantener una actitud respetuosa dentro y fuera de la comunidad.\n\n"
+
+            "**¿Qué buscamos?**\n"
+            "Personas activas, profesionales y comprometidas con ofrecer la mejor experiencia posible a nuestros clientes.\n\n"
+
+            "¡Agradecemos tu interés en formar parte del equipo de Everbox Studio!"
+        ),
+        color=discord.Color.from_rgb(255, 255, 255)
+    )
+
+    embed.set_image(
+        url="https://cdn.discordapp.com/attachments/1517939946219114657/1520463373198819389/Postulaciones.png?ex=6a41495d&is=6a3ff7dd&hm=a4eb7825438c11a0bb05ee94661f25676d83cfe1187ac04125e7bfa352cac9a1&"
+    )
+
+    embed.set_footer(
+        text="Everbox Studio © Todos los derechos reservados"
+    )
+
+    # Botón
+    view = View()
+
+    boton = Button(
+        label="Postula Aquí",
+        url="https://docs.google.com/forms/d/e/1FAIpQLSe6oacPcluoI7rjeKjEfH36Y3BtIZPnjMSXTdADZBeFf6tzvw/viewform?usp=dialog"
+    )
+
+    view.add_item(boton)
+
+    await interaction.response.send_message(
+        embed=embed,
+        view=view
+    )
 
 
 async def on_ready():
