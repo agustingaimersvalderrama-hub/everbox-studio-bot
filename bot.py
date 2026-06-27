@@ -375,6 +375,8 @@ async def cerrarticket(ctx):
     )
 
     await ctx.send(embed=embed)
+
+
 @bot.command(name="ticketactivo")
 @commands.has_permissions(manage_channels=True)
 async def ticketactivo(ctx, usuario: discord.Member):
@@ -421,9 +423,6 @@ async def ticketactivo(ctx, usuario: discord.Member):
 
 
 
-    await asyncio.sleep(10)
-
-    await ctx.channel.delete()
 async def on_ready():
     try:
         synced = await bot.tree.sync()
