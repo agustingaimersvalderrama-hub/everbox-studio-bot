@@ -474,7 +474,15 @@ async def postulaciones(interaction: discord.Interaction):
         view=view
     )
 
+@bot.event
+async def on_ready():
+    print(f"Bot conectado como {bot.user}")
 
+    try:
+        synced = await bot.tree.sync()
+        print(f"Se sincronizaron {len(synced)} comandos.")
+    except Exception as e:
+        print(f"Error al sincronizar: {e}")
 async def on_ready():
     try:
         synced = await bot.tree.sync()
