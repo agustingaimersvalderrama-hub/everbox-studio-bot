@@ -3,6 +3,7 @@ from discord.ext import commands
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
+from discord.ui import View, Button
 
 bot = commands.Bot(
     command_prefix="!",
